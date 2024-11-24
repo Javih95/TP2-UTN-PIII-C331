@@ -37,7 +37,7 @@ const borrarColor = async (req,res)=>{
     await colorModel.destroy({
       where:{id:req.params.id}
     })
-    res.json ( "Autor Borrado Correctamente")
+    res.json ( "Color Borrado Correctamente")
   } catch (error) {
     res.json({message:error.message})
   }
