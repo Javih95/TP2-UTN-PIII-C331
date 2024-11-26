@@ -13,7 +13,8 @@ CREATE SCHEMA stockdb DEFAULT CHARACTER SET utf8 ;
     color_id INT NOT NULL,
     categorie VARCHAR(50) NULL,
     status ENUM('active', 'inactive') NULL,
-    createdAt DATE NULL, updatedAt DATE NULL,
+    createdAt DATE NULL,
+    updatedAt DATE NULL,
     PRIMARY KEY (id)
     );
   CREATE TABLE autores (

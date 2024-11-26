@@ -50,4 +50,30 @@ const borrarArticulo = async (req,res)=>{
       res.json({message:error.message})
     }
 }
-module.exports ={crearArticulo,actualizarArticulo,traerArticulo,traerArticulos,borrarArticulo}
+
+//Leer todos los registros por orden de creacion
+const traerArticulosFiltrados = async (req,res)=>{
+  try {
+    const{ page = 1, limit = 10 , sort="DESC",type,status} = req.query;
+    const offset = (parseInt(page) - 1) * parseInt(limit);
+    const where = {};
+    if (type) where.categorie = type;
+    if (status) where.status = status;
+    const articulos = await articuloModel.findAndCountAll({
+      where,
+      order: [["createdAt", sort.toUpperCase()]],
+      limit: parseInt(limit),
+      offset,
+  })
+  res.json({
+    articulos: articulos.rows,
+    totalDeArticulos: articulos.count,
+    currentPage: parseInt(page),
+    totalPages: Math.ceil(articulos.count / limit),
+  });
+  } catch (error) {
+    res.json({message:error.message})
+  }
+}
+
+module.exports ={crearArticulo,actualizarArticulo,traerArticulo,traerArticulos,borrarArticulo,traerArticulosFiltrados}
