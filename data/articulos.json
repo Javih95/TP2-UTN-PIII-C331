@@ -1,0 +1,45 @@
+[
+    {
+      "modelo": "Camisa Formal",
+      "color_id": 1,
+      "categorie": "Ropa",
+      "status": "active",
+      "id_autor": 1
+    },
+    {
+      "modelo": "Zapatos de Cuero",
+      "color_id": 2,
+      "categorie": "Calzado",
+      "status": "inactive",
+      "id_autor": 2
+    },
+    {
+      "modelo": "Cinturón Casual",
+      "color_id": 3,
+      "categorie": "Accesorios",
+      "status": "active",
+      "id_autor": 3
+    },
+    {
+      "modelo": "Camiseta de Harry Potter",
+      "color_id": 1,
+      "categorie": "Ropa",
+      "status": "active",
+      "id_autor": 1
+    },
+    {
+      "modelo": "1984 - Edición especial",
+      "color_id": 5,
+      "categorie": "Libros",
+      "status": "active",
+      "id_autor": 5
+    },
+    {
+      "modelo": "El Señor de los Anillos - Caja de coleccionista",
+      "color_id": 4,
+      "categorie": "Libros",
+      "status": "inactive",
+      "id_autor": 4
+    }
+  ]
+  
