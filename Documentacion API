@@ -4,62 +4,146 @@ POST (http://localhost:3036/articulos/)
 EJ:
 body:
 {
-"modelo": "83",
-"color_id": 3,
-"categorie": "zapatillas",
-"status": "active"
+"modelo": "23",
+"color_id": 2,
+"categorie": "sandalias",
+"status": "active",
+"id_autor": 1
 } 
 Actualizar por id 
 PUT (http://localhost:3036/articulos/id)
 EJ: (http://localhost:3036/articulos/2)
-{ 
-"modelo": "91",
-"color_id": 5, 
-"categorie": "sandalias", 
-"status": "active"
+{
+"modelo": "23",
+"color_id": 2,
+"categorie": "sandalias",
+"status": "inactive",
+"id_autor": 1
 } 
 Leer un registro por ID
 GET (http://localhost:3036/articulos/id)
 EJ: (http://localhost:3036/articulos/1)
 DEVUELVE:
-[ 
-{ 
-"id": 1,
-"modelo": "83",
-"color_id": 3,
-"categorie": "zapatillas",
-"status": "active",
-"createdAt": "2024-11-24",
-"updatedAt": "2024-11-24" 
-} 
-] 
+{
+  "id": 1,
+  "modelo": "Camisa Formal",
+  "color_id": 1,
+  "categorie": "Ropa",
+  "status": "active",
+  "id_autor": 1,
+  "createdAt": "2024-11-26",
+  "updatedAt": "2024-11-26"
+}
 Leer todos los registros
 GET (http://localhost:3036/articulos/)
 DEVUELVE:
-[ 
-{ 
-"id": 1,
-"modelo": "83",
-"color_id": 3, 
-"categorie": 
-"zapatillas", 
-"status": "active", 
-"createdAt": "2024-11-24",
-"updatedAt": "2024-11-24" 
-},
 {
-"id": 2,
-"modelo": "91",
-"color_id": 5,
-"categorie": "sandalias",
-"status": "active",
-"createdAt": "2024-11-24",
-"updatedAt": "2024-11-24"
-}, 
-] 
+  "articulos": [
+    {
+      "id": 1,
+      "modelo": "Camisa Formal",
+      "color_id": 1,
+      "categorie": "Ropa",
+      "status": "active",
+      "id_autor": 1,
+      "createdAt": "2024-11-26",
+      "updatedAt": "2024-11-26"
+    },
+    {
+      "id": 2,
+      "modelo": "Zapatos de Cuero",
+      "color_id": 2,
+      "categorie": "Calzado",
+      "status": "inactive",
+      "id_autor": 2,
+      "createdAt": "2024-11-26",
+      "updatedAt": "2024-11-26"
+    },
+    {
+      "id": 3,
+      "modelo": "Cinturón Casual",
+      "color_id": 3,
+      "categorie": "Accesorios",
+      "status": "active",
+      "id_autor": 3,
+      "createdAt": "2024-11-26",
+      "updatedAt": "2024-11-26"
+    },
+    {
+      "id": 4,
+      "modelo": "Camiseta de Harry Potter",
+      "color_id": 1,
+      "categorie": "Ropa",
+      "status": "active",
+      "id_autor": 1,
+      "createdAt": "2024-11-26",
+      "updatedAt": "2024-11-26"
+    },
+    {
+      "id": 5,
+      "modelo": "1984 - Edición especial",
+      "color_id": 5,
+      "categorie": "Libros",
+      "status": "active",
+      "id_autor": 5,
+      "createdAt": "2024-11-26",
+      "updatedAt": "2024-11-26"
+    },
+    {
+      "id": 6,
+      "modelo": "El Señor de los Anillos - Caja de coleccionista",
+      "color_id": 4,
+      "categorie": "Libros",
+      "status": "inactive",
+      "id_autor": 4,
+      "createdAt": "2024-11-26",
+      "updatedAt": "2024-11-26"
+    }
+  ],
+  "totalDeArticulos": 6,
+  "currentPage": 1,
+  "totalPages": 1
+}
 Eliminar un registro por ID
 DELETE (http://localhost:3036/articulos/id) 
 EJ: (http://localhost:3036/articulos/2)
+
+Opcionales
+**Paginado**
+**Ordenado por Fecha de Creación**
+**Filtrado por `type/categorie`**
+**Filtrado por `status`**
+**Relación Autor-Modelo Personalizado (1:N)**
+EJ: 
+(http://localhost:3036/articulos?page=1&limit=5&sort=DESC&type=ROPA&status=active)
+DEVUELVE:
+{
+  "articulos": [
+    {
+      "id": 1,
+      "modelo": "Camisa Formal",
+      "color_id": 1,
+      "categorie": "Ropa",
+      "status": "active",
+      "id_autor": 1,
+      "createdAt": "2024-11-26",
+      "updatedAt": "2024-11-26"
+    },
+    {
+      "id": 4,
+      "modelo": "Camiseta de Harry Potter",
+      "color_id": 1,
+      "categorie": "Ropa",
+      "status": "active",
+      "id_autor": 1,
+      "createdAt": "2024-11-26",
+      "updatedAt": "2024-11-26"
+    }
+  ],
+  "totalDeArticulos": 2,
+  "currentPage": 1,
+  "totalPages": 1
+}
 
 AUTORES:
 Crear un autor 
@@ -74,38 +158,143 @@ Leer todos los autores
 GET (http://localhost:3036/autores/) 
 DEVUELVE:
 [
-{ 
-"id": 1,
-"name": "Javier",
-"surname": "Aguirre",
-"createdAt": "2024-11-24",
-"updatedAt": "2024-11-24"
-},
-{ 
-"id": 2, 
-"name": "Javi",
-"surname": "H",
-"createdAt": "2024-11-24",
-"updatedAt": "2024-11-24"
-} 
-] 
+  {
+    "id": 1,
+    "name": "Juan",
+    "surname": "Pérez",
+    "createdAt": "2024-11-26",
+    "updatedAt": "2024-11-26"
+  },
+  {
+    "id": 2,
+    "name": "María",
+    "surname": "González",
+    "createdAt": "2024-11-26",
+    "updatedAt": "2024-11-26"
+  },
+  {
+    "id": 3,
+    "name": "Carlos",
+    "surname": "López",
+    "createdAt": "2024-11-26",
+    "updatedAt": "2024-11-26"
+  },
+  {
+    "id": 4,
+    "name": "J.K.",
+    "surname": "Rowling",
+    "createdAt": "2024-11-26",
+    "updatedAt": "2024-11-26"
+  },
+  {
+    "id": 5,
+    "name": "George",
+    "surname": "Orwell",
+    "createdAt": "2024-11-26",
+    "updatedAt": "2024-11-26"
+  },
+  {
+    "id": 6,
+    "name": "J.R.R.",
+    "surname": "Tolkien",
+    "createdAt": "2024-11-26",
+    "updatedAt": "2024-11-26"
+  },
+  {
+    "id": 7,
+    "name": "Javier",
+    "surname": "Aguirre",
+    "createdAt": "2024-11-27",
+    "updatedAt": "2024-11-27"
+  }
+]
 Leer un autor por id
 GET (http://localhost:3036/autores/id) 
 EJ:(http://localhost:3036/autores/1)
 DEVUELVE:
-[ 
 {
-"id": 1,
-"name": "Javier",
-"surname": "Aguirre",
-"createdAt": "2024-11-24", 
-"updatedAt": "2024-11-24" 
-},
-]
+  "id": 1,
+  "name": "Juan",
+  "surname": "Pérez",
+  "createdAt": "2024-11-26",
+  "updatedAt": "2024-11-26"
+}
 Eliminar un autor por ID
 DELETE (http://localhost:3036/autores/id)
 EJ: (http://localhost:3036/autores/2)
-
+Filtrar articulos por autor
+GET (http://localhost:3036/articulos/autor/id) 
+DEVUELVE:
+[
+  {
+    "id": 1,
+    "modelo": "Camisa Formal",
+    "color_id": 1,
+    "categorie": "Ropa",
+    "status": "active",
+    "id_autor": 1,
+    "createdAt": "2024-11-26",
+    "updatedAt": "2024-11-26",
+    "autor": {
+      "id": 1,
+      "name": "Juan",
+      "surname": "Pérez",
+      "createdAt": "2024-11-26",
+      "updatedAt": "2024-11-26"
+    }
+  },
+  {
+    "id": 4,
+    "modelo": "Camiseta de Harry Potter",
+    "color_id": 1,
+    "categorie": "Ropa",
+    "status": "active",
+    "id_autor": 1,
+    "createdAt": "2024-11-26",
+    "updatedAt": "2024-11-26",
+    "autor": {
+      "id": 1,
+      "name": "Juan",
+      "surname": "Pérez",
+      "createdAt": "2024-11-26",
+      "updatedAt": "2024-11-26"
+    }
+  },
+  {
+    "id": 6,
+    "modelo": "23",
+    "color_id": 2,
+    "categorie": "sandalias",
+    "status": "inactive",
+    "id_autor": 1,
+    "createdAt": "2024-11-26",
+    "updatedAt": "2024-11-26",
+    "autor": {
+      "id": 1,
+      "name": "Juan",
+      "surname": "Pérez",
+      "createdAt": "2024-11-26",
+      "updatedAt": "2024-11-26"
+    }
+  },
+  {
+    "id": 7,
+    "modelo": "23",
+    "color_id": 2,
+    "categorie": "sandalias",
+    "status": "active",
+    "id_autor": 1,
+    "createdAt": "2024-11-26",
+    "updatedAt": "2024-11-26",
+    "autor": {
+      "id": 1,
+      "name": "Juan",
+      "surname": "Pérez",
+      "createdAt": "2024-11-26",
+      "updatedAt": "2024-11-26"
+    }
+  }
+]
 COLORES:
 Crear un color 
 POST (http://localhost:3036/colores/)
@@ -118,31 +307,47 @@ Leer todos los colores
 GET (http://localhost:3036/colores/) 
 DEVUELVE: 
 [
-{ 
-"id": 1,
-"nombre": "Negro",
-"createdAt": "2024-11-24",
-"updatedAt": "2024-11-24" 
-}, 
-{ 
-"id": 2,
-"nombre": "Blanco",
-"createdAt": "2024-11-24",
-"updatedAt": "2024-11-24" 
-} 
-] 
+  {
+    "id": 1,
+    "nombre": "Rojo",
+    "createdAt": "2024-11-26",
+    "updatedAt": "2024-11-26"
+  },
+  {
+    "id": 2,
+    "nombre": "Azul",
+    "createdAt": "2024-11-26",
+    "updatedAt": "2024-11-26"
+  },
+  {
+    "id": 3,
+    "nombre": "Verde",
+    "createdAt": "2024-11-26",
+    "updatedAt": "2024-11-26"
+  },
+  {
+    "id": 4,
+    "nombre": "Amarillo",
+    "createdAt": "2024-11-26",
+    "updatedAt": "2024-11-26"
+  },
+  {
+    "id": 5,
+    "nombre": "Negro",
+    "createdAt": "2024-11-26",
+    "updatedAt": "2024-11-26"
+  }
+]
 Leer un color por id 
 GET (http://localhost:3036/colores/id)
 EJ:(http://localhost:3036/colores/1)
 DEVUELVE: 
-[ 
-{ 
-"id": 1,
-"nombre": "Negro", 
-"createdAt": "2024-11-24",
-"updatedAt": "2024-11-24" 
-} 
-] 
+{
+  "id": 1,
+  "nombre": "Rojo",
+  "createdAt": "2024-11-26",
+  "updatedAt": "2024-11-26"
+}
 Eliminar un color por ID
 DELETE (http://localhost:3036/colores/id)
 EJ:(http://localhost:3036/colores/1)
